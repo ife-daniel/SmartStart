@@ -8,8 +8,8 @@ export default function Index() {
   const {width, height} = Dimensions.get('screen')
   // console.log(width, height)
   // console.log('OS-' Platform.OS)
-  function(greetBasedOnDevice){
-    Alert.alert(`${Platform.OS}`, `This is an ${Platform.OS}` device)
+  function greetBasedOnDevice() {
+    Alert.alert(`${Platform.OS}`, `This is an ${Platform.OS} device`)
   }
 
   return (
@@ -46,7 +46,7 @@ export default function Index() {
       </Pressable>
 
       <TouchableOpacity onPress={()=>{
-        console.log("Next Step")
+        // console.log("Next Step")
         Alert.alert('Good',"You have submitted successfully")
       }}style={{
         backgroundColor:'white', borderColor: "Blue", padding:8, 
