@@ -38,7 +38,7 @@ export default function Index() {
       <Pressable onPress={()=>{
         console.log("Ifeoluwa")
       }}style={{
-        backgroundColor:'blue', padding:8, width:'50%', 
+        backgroundColor:'black', padding:8, width:'50%', 
         alignItems: 'center', borderRadius:24, marginTop:18}}>
         
         <Text style={{color:'white', fontSize:18}}>Submit</Text>
@@ -49,10 +49,10 @@ export default function Index() {
         // console.log("Next Step")
         Alert.alert('Good',"You have submitted successfully")
       }}style={{
-        backgroundColor:'white', borderColor: "Blue", padding:8, 
+        backgroundColor:'white', borderColor: "blue", borderWidth: 2, padding:8,
         width:'50%', alignItems: 'center', borderRadius:24, marginTop:18}}>
         
-        <Text style={{color:'white', fontSize:18}}>Log In</Text>
+        <Text style={{color:'blue', fontSize:18}}>Log In</Text>
 
       </TouchableOpacity>
 
