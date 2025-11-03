@@ -15,3 +15,4 @@ const Button = ({text, buttonStyle,onPress})=>{
 }
 
 export default Button;
+s
