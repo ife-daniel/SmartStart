@@ -1,5 +1,6 @@
 {
   "expo": {
+    "entryPoint": "./app/auth/signup.js",
     "name": "smartstart",
     "slug": "smartstart",
     "version": "1.0.0",
@@ -38,7 +39,8 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
