@@ -102,7 +102,7 @@ export default function EmployeeChecklist() {
       contentContainerStyle={{ paddingBottom: 40 }}
       showsVerticalScrollIndicator={false}
     >
-      {/* Deadline Card */}
+        {/* Deadline Card */}
       <View style={styles.deadlineCard}>
         <View style={{ flex: 1 }}>
           <Text style={styles.deadlineTitle}>Deadline to complete all task:</Text>
@@ -111,12 +111,12 @@ export default function EmployeeChecklist() {
         <Ionicons name="alert-circle-outline" size={32} color="#FF6B00" />
       </View>
 
-      {/* Progress Text */}
+        {/* Progress Text */}
       <Text style={styles.subtitle}>
         Complete all tasks to finish your onboarding
       </Text>
 
-      {/* Progress Bar */}
+        {/* Progress Bar */}
       <View style={styles.progressContainer}>
         <View style={styles.progressBar}>
           <View
@@ -131,7 +131,7 @@ export default function EmployeeChecklist() {
         </Text>
       </View>
 
-      {/* Task List */}
+        {/* Task List */}
       {tasks.map((task) => (
         <View key={task.id} style={[styles.taskCard, { borderColor: task.color }]}>
           <View style={styles.taskHeader}>

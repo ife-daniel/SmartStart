@@ -29,11 +29,11 @@ export default function EmployeelUpload() {
           </View>
         </View>
 
-        {/* Title */}
+         {/* Title */}
         <Text style={styles.title}>Document Uploads</Text>
         <Text style={styles.subtitle}>Upload your documents to complete this step</Text>
 
-        {/* Upload Section */}
+          {/* Upload Section */}
         <View style={styles.uploadCard}>
           <TouchableOpacity style={styles.chooseFileBtn}>
             <Text style={{ color: "#000", fontSize: 13 }}>Choose File</Text>
@@ -43,7 +43,7 @@ export default function EmployeelUpload() {
 
         <Text style={styles.supportText}>Supported document format: pdf and jpg</Text>
 
-        {/* Document List */}
+          {/* Document List */}
         <Text style={styles.sectionHeader}>Your Documents</Text>
 
         {documents.map((doc, index) => (

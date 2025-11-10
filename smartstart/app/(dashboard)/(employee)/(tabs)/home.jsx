@@ -20,13 +20,13 @@ export default function EmployeeHome() {
         /> </Pressable>
       </View>
 
-      {/* Welcome Section */}
+        {/* Welcome Section */}
       <View style={{ marginTop: 12 }}>
         <Text style={styles.welcomeText}>Welcome Aisha!</Text>
         <Text style={styles.subText}>Let's get you settled in</Text>
       </View>
 
-      {/* Onboarding Progress */}
+        {/* Onboarding Progress */}
       <View style={styles.progressCard}>
         <View style={styles.progressCircle}>
           <Text style={styles.progressPercent}>0%</Text>
@@ -40,26 +40,34 @@ export default function EmployeeHome() {
         </View>
       </View>
 
-      {/* Quick Info */}
+        {/* Quick Info */}
       <View style={styles.infoCard}>
         <Text style={styles.sectionTitle}>Quick Information</Text>
 
         <View style={styles.infoSection}>
-          <Text style={styles.infoHeader}>Details</Text>
+            <Text style={styles.infoHeader}>Details</Text>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Employee ID:</Text>
             <Text style={styles.infoValue}>121948ASH3</Text>
           </View>
-          <Text style={styles.infoLabel}>Email:</Text>
-          <Text style={styles.infoValue}>aishabello@gmail.com</Text>
-          <Text style={styles.infoLabel}>Phone:</Text>
-          <Text style={styles.infoValue}>+2347082569056</Text>
-          <Text style={styles.infoLabel}>Department:</Text>
-          <Text style={styles.infoValue}>Logistics</Text>
-          <Text style={styles.infoLabel}>Start Date:</Text>
-          <Text style={styles.infoValue}>Oct 30, 2025</Text>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Email:</Text>
+            <Text style={styles.infoValue}>aishabello@gmail.com</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Phone:</Text>
+            <Text style={styles.infoValue}>+2347082569056</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Department:</Text>
+            <Text style={styles.infoValue}>Logistics</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>Start Date:</Text>
+            <Text style={styles.infoValue}>Oct 30, 2025</Text>
+          </View>
         </View>
-
+      
         <View style={styles.infoSection}>
           <Text style={styles.infoHeader}>Manager</Text>
           <Text style={styles.infoValue}>Olumide Adeboyega</Text>
@@ -75,9 +83,10 @@ export default function EmployeeHome() {
           <Text style={styles.infoValue}>Okafor Benedicta</Text>
           <Text style={styles.infoValue}>BenekaFordicta@gmail.com</Text>
         </View>
+
       </View>
 
-      {/* Upcoming Sessions */}
+        {/* Upcoming Sessions */}
       <View style={styles.upcomingCard}>
         <Text style={styles.sectionTitle}>Upcoming Sessions</Text>
         {[
@@ -92,7 +101,8 @@ export default function EmployeeHome() {
         ))}
       </View>
 
-      {/* Checklist and Upload Section */}
+        {/* Checklist and Upload Section */}
+      <View style={{marginBottom:20}}>
       <View style={styles.actionCard}>
         <Feather name="check-square" size={24} color="#007AFF" />
         <View style={{ flex: 1 }}>
@@ -117,6 +127,7 @@ export default function EmployeeHome() {
             <Text style={styles.buttonText}>Upload Files</Text>
           </TouchableOpacity>
         </View>
+      </View>
       </View>
     </ScrollView>
     </SafeAreaView>
@@ -148,6 +159,7 @@ const styles = StyleSheet.create({
   subText: {
     color: "#777",
     fontSize: 14,
+    fontFamily:"regular"
   },
   progressCard: {
     flexDirection: "row",
@@ -196,6 +208,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#D8E5F8",
   },
+  infoRow: {
+    gap:2
+  },
   sectionTitle: {
     fontSize: 16,
     fontWeight: "700",
@@ -204,25 +219,26 @@ const styles = StyleSheet.create({
   },
   infoSection: {
     marginTop: 10,
+    gap:6
   },
   infoHeader: {
+    fontSize:18,
     fontWeight: "700",
     color: "#000",
     marginBottom: 4,
   },
   infoLabel: {
-    fontSize: 13,
+    fontSize: 14,
     color: "#555",
   },
   infoValue: {
-    fontSize: 13,
+    fontSize: 12,
     color: "#000",
-    marginBottom: 3,
   },
   upcomingCard: {
     backgroundColor: "#fff",
     borderRadius: 12,
-    padding: 16,
+    padding: 8,
     marginTop: 20,
   },
   sessionItem: {
@@ -232,7 +248,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
   },
   sessionTitle: {
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: "600",
     color: "#000",
   },
