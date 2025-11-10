@@ -1,13 +1,11 @@
 import { Stack } from "expo-router";
 
+export default function OnboardingLayout() {
 
-
-const OnboardingLayout = () => {
     return (
     <Stack screenOptions={{headerShown:false,}}>  
   
-      <Stack.Screen name="splash"
-      options={{title:"Splash Screen",}}/>
+
       <Stack.Screen name="onboard1"
       options={{title:"Onboarding",}}/>
       <Stack.Screen name="onboard2"
@@ -16,7 +14,5 @@ const OnboardingLayout = () => {
       options={{title:"Onboarding",}}/>
 
     </Stack>
-    )
+    );
 }
-
-export default OnboardngLayout;

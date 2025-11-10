@@ -1,17 +1,16 @@
-import { Text, View, TextInput, Image, Dimensions, Pressable, 
-  Touchable, TouchableOpacity, 
-TouchableWithoutFeedback, ScrollView, Alert, Platform, StyleSheet } from "react-native";
+import { Text, View, TextInput, Image, Dimensions, 
+  TouchableOpacity, ScrollView, Alert, StyleSheet } from "react-native";
 
 import { useState, useEffect } from "react";
 
 import {SafeAreaView} from "react-native-safe-area-context";
 
-import {router} from "expo-router";
+import {useRouter} from "expo-router";
 
 import Button from "../../components/button";
-import InputField from "../../components/textinput";
 
 import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Signup() {
 
@@ -22,22 +21,9 @@ export default function Signup() {
   const [email , setMail] = useState('');
   const [password , setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [selectedRole, setSelectedRole] = useState(null);
 
-//   const validatePassword = (pass) => {
-//   const minLength = 8;
-//   const hasUpperCase = /[A-Z]/.test(pass);
-//   const hasLowerCase = /[a-z]/.test(pass);
-//   const hasNumber = /\d/.test(pass);
-//   const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
-
-//   return (
-//     pass.length >= minLength &&
-//     hasUpperCase &&
-//     hasLowerCase &&
-//     hasNumber &&
-//     hasSpecialChar
-//   );
-// };
+  const router = useRouter();
 
   const styles = StyleSheet.create({
   container:{
@@ -51,8 +37,9 @@ export default function Signup() {
     fontWeight:'semi-bold',
   },
   input:{
+    padding:8,
     borderWidth:1.5,
-    borderColor:'black',
+    borderColor:'lightgrey',
     height:38,
     borderRadius:8,
     paddingRight:8,
@@ -64,17 +51,41 @@ export default function Signup() {
   },
   eyeIcon:{
     position: 'absolute',
-    right: 8,
-    top: '40%',
+    right: 2,
+    top: '36%',
     transform: [{ translateY: -12 }],
     backgroundColor: 'transparent',
-    padding: 4,
+    borderRadius:8,
+    padding: 8,
+  },
+  mailIcon:{
+    position: 'absolute',
+    left:0,
+    bottom: '25%',
+    transform: [{ translateY: 12 }],
+    backgroundColor: 'transparent',
+    borderRadius:8,
+    padding: 8,
+  },
+  google:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      borderWidth: 1,
+      borderColor: 'lightgrey',
+      paddingVertical: 8,
+      paddingHorizontal: 20,
+      borderRadius: 8,
+      width: '99%',
+      height:48,
+      shadowColor: 'black',
+      shadowOpacity: 0.1,
+      shadowOffset: { width: -4, height: 2 },
+      shadowRadius: 4,
+      elevation: 8,
   }
 })
-
-  function greetBasedOnDevice() {
-    Alert.alert(`${Platform.OS}`, `This is an ${Platform.OS} device`)
-  }
 
   return (
     <SafeAreaView
@@ -82,56 +93,116 @@ export default function Signup() {
         backgroundColor:"white",
         flex: 1,
         alignItems:'center',
-        paddingHorizontal: width*.06,
-        paddingVertical: height*.04,
+        paddingHorizontal: width*.0001,
+        paddingVertical: height*.04
       }}
     >
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
+
+      <View style={{ width:"100%", height:"10%", alignItems:"center"
+         }}>
+        <Image
+          source={require("../../assets/images/Logo + Name.png")}
+          style={{
+            width: Math.min(360, width * 0.6),
+            height: height * 0.04,
+            resizeMode: "contain",
+          }}
+        />
+      </View>
 
       <View style={styles.container}>
-      <Text style={{fontWeight:'bold', fontSize:32, textAlign:'center', marginVertical:12}}>Create an Account</Text>
-      <Text style={{fontWeight:'medium', fontSize:12, textAlign:'center'}}>Already have an account? Log In</Text>
+      <Text style={{fontWeight:'bold', fontSize:34, textAlign:'center', 
+        marginBottom:12}}>Create an Account</Text>
 
-      <View style={{...styles.container, flexDirection:'row', justifyContent:'space-evenly', marginTop:38}} >     
-      <Text style={{...styles.label, fontSize: 14}} >Admin</Text>
-      <Text style={{...styles.label, fontSize: 14}} >Employee</Text>
-      </View> 
+      <Text style={{fontWeight:'medium', fontSize:12, textAlign:'center'
+            }}>Already have an account?<Text> </Text>
+              <Text onPress={() => router.push('./login')}
+                style={{fontSize:16, fontWeight:'bold', color: '#007AFF', 
+                  textDecorationLine: 'underline'
+                  }}>Log In</Text>
+      </Text>
+
+      <View style={{...styles.container, flexDirection:'row', justifyContent:'space-evenly', marginTop:24}}>
+  <TouchableOpacity 
+    onPress={() => setSelectedRole('admin')}
+    style={{
+      backgroundColor: selectedRole === 'admin' ? '#007AFF' : 'white',
+      paddingVertical: 12,
+      paddingHorizontal: 24,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: '#007AFF'
+    }}
+  >
+    <Text style={{
+      color: selectedRole === 'admin' ? 'white' : '#007AFF',
+      fontSize: 14,
+      fontWeight: '600'
+    }}>
+      Admin
+    </Text>
+  </TouchableOpacity>
+
+  <TouchableOpacity 
+    onPress={() => setSelectedRole('employee')}
+    style={{
+      backgroundColor: selectedRole === 'employee' ? '#007AFF' : 'white',
+      paddingVertical: 12,
+      paddingHorizontal: 24,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: '#007AFF'
+    }}
+  >
+    <Text style={{
+      color: selectedRole === 'employee' ? 'white' : '#007AFF',
+      fontSize: 14,
+      fontWeight: '600'
+    }}>
+      Employee
+    </Text>
+  </TouchableOpacity>
+</View> 
 
       <View style={{...styles.container, marginTop:38}}>
       <Text style={styles.label}>Email Address</Text>
-      <TextInput keyboardType="email-address" style={styles.input}
+      <TextInput placeholderTextColor="lightgrey" placeholder="name@gmail.com" keyboardType="email-address" style={{...styles.input, paddingLeft:30}}
                   onChangeText={(mail)=>{setMail(mail)
-                   }}/>
+                   }}/> 
+      <TouchableOpacity style={styles.mailIcon}>
+        <Ionicons name="mail" size={18} color="black" />
+      </TouchableOpacity>
       </View>
 
       <View style={styles.container}>
       <Text style={styles.label}>Company Name</Text>
-      <TextInput keyboardType="default" style={styles.input} 
+      <TextInput placeholderTextColor="lightgrey" placeholder="Doe Crpos" keyboardType="default" style={styles.input} 
                   onChangeText={(text)=>{setName(text)
                   }}/>
       </View>
 
       <View style={styles.container}>
       <Text style={styles.label}>Role</Text>
-      <TextInput keyboardType="default" style={styles.input} 
+      <TextInput placeholderTextColor="lightgrey" placeholder="HR Manager" keyboardType="default" style={styles.input} 
                   onChangeText={(text)=>{setRole(text)
                   }}/>
       </View>
 
-// Password Field
+{/* Password Field */}
 
       <View style={styles.container}>
       <Text style={styles.label}>Password</Text>
       <View style={styles.inputContainer}>
-      <TextInput secureTextEntry={!passwordVisible} 
-            style={styles.input} onChangeText={(password)=>{setPassword(password)
+      <TextInput placeholderTextColor="lightgrey" placeholder="Johndoe1234#" secureTextEntry={!passwordVisible} 
+            style={{...styles.input, paddingRight:30}} onChangeText={(password)=>{setPassword(password)
              }}/>
 
       <TouchableOpacity onPress={()=>{setPasswordVisible(!passwordVisible)}} 
              style={styles.eyeIcon}>
       <Feather 
         name={passwordVisible ? "eye" : "eye-off"} 
-        size={24} 
+        size={18} 
         color="black"/>
       </TouchableOpacity>
       </View>
@@ -142,32 +213,73 @@ export default function Signup() {
       <TextInput secureTextEntry={!passwordVisible} 
             style={styles.input} onChangeText={(password)=>{setPassword(password)
              }}/>
-
-      {/* <TouchableOpacity onPress={()=>{setPasswordVisible(!passwordVisible)}} 
-             style={{backgroundColor:'white', position:'absolute', bottom:12, right:12, padding:0}}>
-      <Text style={{color:'black'}}>{passwordVisible ? 'Hide me' : 'Show me'}</Text>
-      </TouchableOpacity> */}
       </View>
 
 
+  <Button buttonStyle={{marginTop:28}} text="Sign Up" onPress={()=>{
+    if (!selectedRole) {
+      Alert.alert('Error', 'Please select user \n (Admin or Employee)');
+      return;
+    }
+    if (selectedRole === 'admin') {
+      router.replace('/(dashboard)/(admin)');
+    } else {
+      router.replace('/(dashboard)/(employee)');
+    }
+  }}/>
 
-      <Button buttonStyle={{marginTop:28}} text="Sign Up" onPress={()=>{
-    //      if (validatePassword(password)) 
-    //       {Alert.alert(
-    //     'Invalid Password',
-    //     'Password must be at least 8 characters long and contain uppercase, lowercase, number and special characters.'
-    //   );
-    //   return;
-    // }
-         router.push('../main')
-         }}/> 
+    {/* Divider with "or" */}
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 18,
+        width: '100%',
+        alignSelf: 'center',
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          height: 1,
+          backgroundColor: '#CFCFCF',
+        }}
+      />
+      <Text
+        style={{
+          marginHorizontal: 10,
+          fontSize: 14,
+          color: '#A0A0A0',
+          fontWeight: '500',
+        }}
+      >or </Text>
+      <View
+        style={{
+          flex: 1,
+          height: 1,
+          backgroundColor: '#CFCFCF',
+        }}
+      />
+    </View>
+    
+    
+      <View style={{ alignItems: 'center', marginTop: 14, marginBottom:58}}>
+      <TouchableOpacity
+        onPress={() => Alert.alert('Info', 'Google Sign In pressed')}
+        style={styles.google} >
+         <Image source={require('../../assets/images/googleicon.png')}
+        style={{width: 30, height: 30,
+              marginRight:4, resizeMode: 'contain',
+            }}/>
+        <Text style={{ color: 'black', fontSize: 16, fontWeight: '600' }}>
+          Continue with Google</Text>
+      </TouchableOpacity>
+      </View>  
 
-      <Text style={{fontWeight:'regular', fontSize:18, textAlign:'center', marginTop:38
-                   }}>Or continue with Google</Text>
       </View>
     
     </ScrollView>
     </SafeAreaView>
   );
 }
-// Alert.alert('Details', `First Name: ${firstName} \n Last Name: ${lastName} \n Email: ${email} \n Password: ${password}`)
