@@ -1,7 +1,12 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Pressable } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 export default function EmployeelUpload() {
+
+  const router = useRouter();
+
   const documents = [
     { title: "Government ID", file: "Drivers-license.pdf", size: "2.4 MB", time: "2 hours ago", status: "Pending Review", color: "#FFB84C" },
     { title: "Offer Letter", file: "Signed offer.pdf", size: "1.8 MB", time: "2 days ago", status: "Approved", color: "#28C76F" },
@@ -9,63 +14,68 @@ export default function EmployeelUpload() {
   ];
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Ionicons name="search-outline" size={22} color="#A0A0A0" style={styles.searchIcon} />
-        <View style={styles.headerIcons}>
-          <Ionicons name="notifications-outline" size={24} color="#000" />
-          <Ionicons name="chatbubble-outline" size={24} color="#000" style={{ marginLeft: 14 }} />
-          <View style={styles.avatar} />
-        </View>
-      </View>
-
-      {/* Title */}
-      <Text style={styles.title}>Document Uploads</Text>
-      <Text style={styles.subtitle}>Upload your documents to complete this step</Text>
-
-      {/* Upload Section */}
-      <View style={styles.uploadCard}>
-        <TouchableOpacity style={styles.chooseFileBtn}>
-          <Text style={{ color: "#000", fontSize: 13 }}>Choose File</Text>
-        </TouchableOpacity>
-        <Text style={styles.uploadText}>Upload a scan or photo of your documents</Text>
-      </View>
-
-      <Text style={styles.supportText}>Supported document format: pdf and jpg</Text>
-
-      {/* Document List */}
-      <Text style={styles.sectionHeader}>Your Documents</Text>
-
-      {documents.map((doc, index) => (
-        <View key={index} style={[styles.docCard, { borderColor: doc.color }]}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-            <Text style={[styles.docTitle, { color: doc.color }]}>{doc.title}</Text>
-            <Feather name="file-text" size={18} color={doc.color} />
-          </View>
-          <Text style={styles.docFile}>{doc.file}</Text>
-          <Text style={styles.docDetails}>{doc.size}   ·   {doc.time}</Text>
-          <Text style={[styles.statusText, { color: doc.color }]}>{doc.status}</Text>
-
-          <View style={styles.docActions}>
-            <TouchableOpacity style={styles.iconBtn}>
-              <Feather name="eye" size={16} color="#000" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBtn}>
-              <Feather name="download" size={16} color="#000" />
-            </TouchableOpacity>
+    <SafeAreaView style={{ flex: 1, paddingBottom:-34, backgroundColor: "white" }}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Ionicons name="search-outline" size={22} color="#A0A0A0" style={styles.searchIcon} />
+          <View style={styles.headerIcons}>
+            <Ionicons name="notifications-outline" size={24} color="#000" />
+            <Ionicons name="chatbubble-outline" size={24} color="#000" style={{ marginLeft: 14 }} />
+            <Pressable onPress={() => {router.push('/profile')}} >
+              <Image
+                source={require("../../../../assets/images/profileicon.png")}
+                style={styles.avatar} /> </Pressable>
           </View>
         </View>
-      ))}
-    </ScrollView>
+
+        {/* Title */}
+        <Text style={styles.title}>Document Uploads</Text>
+        <Text style={styles.subtitle}>Upload your documents to complete this step</Text>
+
+        {/* Upload Section */}
+        <View style={styles.uploadCard}>
+          <TouchableOpacity style={styles.chooseFileBtn}>
+            <Text style={{ color: "#000", fontSize: 13 }}>Choose File</Text>
+          </TouchableOpacity>
+          <Text style={styles.uploadText}>Upload a scan or photo of your documents</Text>
+        </View>
+
+        <Text style={styles.supportText}>Supported document format: pdf and jpg</Text>
+
+        {/* Document List */}
+        <Text style={styles.sectionHeader}>Your Documents</Text>
+
+        {documents.map((doc, index) => (
+          <View key={index} style={[styles.docCard, { borderColor: doc.color }]}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+              <Text style={[styles.docTitle, { color: doc.color }]}>{doc.title}</Text>
+              <Feather name="file-text" size={18} color={doc.color} />
+            </View>
+            <Text style={styles.docFile}>{doc.file}</Text>
+            <Text style={styles.docDetails}>{doc.size}   ·   {doc.time}</Text>
+            <Text style={[styles.statusText, { color: doc.color }]}>{doc.status}</Text>
+
+            <View style={styles.docActions}>
+              <TouchableOpacity style={styles.iconBtn}>
+                <Feather name="eye" size={16} color="#000" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconBtn}>
+                <Feather name="download" size={16} color="#000" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FAFAFA", paddingHorizontal: 20, paddingTop: 50 },
+  container: { flex: 1, backgroundColor: "white", paddingHorizontal:20, paddingVertical:28},
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   headerIcons: { flexDirection: "row", alignItems: "center" },
-  avatar: { width: 34, height: 34, borderRadius: 17, backgroundColor: "#DDD", marginLeft: 12 },
+  avatar: { width: 34, height: 34, borderRadius: 19, marginLeft: 12 },
   searchIcon: { backgroundColor: "#F3F3F3", padding: 10, borderRadius: 10 },
   title: { fontSize: 22, fontWeight: "700", marginTop: 20, color: "#000" },
   subtitle: { color: "#666", marginBottom: 16 },

@@ -1,18 +1,23 @@
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Pressable } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
-
-const { height } = Dimensions.get("screen");
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 export default function EmployeeHome() {
+
+  const router = useRouter();
+
   return (
+    <SafeAreaView style={{ flex: 1, paddingBottom:-34, backgroundColor: "white" }}>
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       
       <View style={styles.header}>
         <Ionicons name="menu-outline" size={28} color="#000" />
+        <Pressable onPress={() => {router.push('/profile')}} >
         <Image
           source={require("../../../../assets/images/profileicon.png")}
           style={styles.avatar}
-        />
+        /> </Pressable>
       </View>
 
       {/* Welcome Section */}
@@ -114,6 +119,7 @@ export default function EmployeeHome() {
         </View>
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -121,8 +127,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FDFDFD",
-    paddingHorizontal: 20,
-    paddingVertical:height*.08,
+    paddingHorizontal:20,
+    paddingVertical:28,
   },
   header: {
     flexDirection: "row",

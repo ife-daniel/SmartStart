@@ -1,7 +1,12 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, Pressable } from "react-native";
 import { Ionicons, Feather } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 export default function EmployeeProgressTracker() {
+
+  const router = useRouter();
+
   const milestones = [
     { id: 1, title: "Welcome Email Sent", date: "Oct 25, 2025", status: "complete" },
     { id: 2, title: "Documentation Submitted", date: "Oct 30, 2025", status: "complete" },
@@ -11,6 +16,7 @@ export default function EmployeeProgressTracker() {
   ];
 
   return (
+    <SafeAreaView style={{ flex: 1, paddingBottom:-34, backgroundColor: "white" }}>
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Header */}
       <View style={styles.header}>
@@ -18,7 +24,10 @@ export default function EmployeeProgressTracker() {
         <View style={styles.headerIcons}>
           <Ionicons name="notifications-outline" size={24} color="#000" />
           <Ionicons name="chatbubble-outline" size={24} color="#000" style={{ marginLeft: 14 }} />
-          <View style={styles.avatar} />
+          <Pressable onPress={() => {router.push('/profile')}} >
+             <Image
+               source={require("../../../../assets/images/profileicon.png")}
+               style={styles.avatar}/> </Pressable>
         </View>
       </View>
 
@@ -29,7 +38,7 @@ export default function EmployeeProgressTracker() {
       {/* Progress Card */}
       <View style={styles.progressCard}>
         <View style={styles.badge}>
-          <Feather name="award" size={20} color="#007AFF" />
+          <Feather name="award" size={20} color="#0077B6" />
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.progressTitle}>Great Progress!</Text>
@@ -45,7 +54,7 @@ export default function EmployeeProgressTracker() {
             <View
               style={[
                 styles.statusCircle,
-                { backgroundColor: m.status === "complete" ? "#28C76F" : "#CFCFCF" },
+                { backgroundColor: m.status === "complete" ? "#00B894" : "#CFCFCF" },
               ]}
             >
               {m.status === "complete" && <Feather name="check" size={14} color="#fff" />}
@@ -61,18 +70,19 @@ export default function EmployeeProgressTracker() {
 
       {/* Pending Action */}
       <View style={styles.warningBanner}>
-        <Ionicons name="alert-circle-outline" size={18} color="#C58B00" />
+        <Ionicons name="alert-circle-outline" size={18} color="#FDCB6E" />
         <Text style={styles.warningText}>Complete Tax & Employment Forms</Text>
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FAFAFA", paddingHorizontal: 20, paddingTop: 50 },
+  container: { flex: 1, backgroundColor: "white", paddingHorizontal:20, paddingVertical:28 },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   headerIcons: { flexDirection: "row", alignItems: "center" },
-  avatar: { width: 34, height: 34, borderRadius: 17, backgroundColor: "#DDD", marginLeft: 12 },
+  avatar: { width: 34, height: 34, borderRadius: 19, marginLeft: 12 },
   searchIcon: { backgroundColor: "#F3F3F3", padding: 10, borderRadius: 10 },
   title: { fontSize: 22, fontWeight: "700", marginTop: 20, color: "#000" },
   subtitle: { color: "#666", marginBottom: 16 },
@@ -90,7 +100,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginRight: 12,
   },
-  progressTitle: { fontWeight: "700", color: "#007AFF" },
+  progressTitle: { fontWeight: "700", color: "#0077B6" },
   progressText: { color: "#555", fontSize: 13, marginTop: 4 },
   milestonesCard: { backgroundColor: "#fff", borderRadius: 12, padding: 16 },
   milestoneHeader: { fontWeight: "700", fontSize: 16, marginBottom: 12 },

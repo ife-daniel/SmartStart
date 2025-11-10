@@ -6,7 +6,7 @@ export default function Splash() {
 
         <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#fff" }}>
             <Image
-                source={require("../assets/images/Logo + Name.png")}
+                source={require("../assets/images/Logo-and-Name.png")}
                 style={{ width: 200, height: 200, resizeMode: "contain" }}
             />
         </SafeAreaView>

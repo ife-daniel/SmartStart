@@ -1,7 +1,10 @@
 import { Text, View, TextInput, Image, Dimensions, 
   TouchableOpacity, ScrollView, Alert, StyleSheet } from "react-native";
 
-import { useState } from "react";
+import { loginUser } from '../../src/services/auth';
+import api from '../../src/api/client';
+
+import { useState, useEffect } from "react";
 
 import {SafeAreaView} from "react-native-safe-area-context";
 
@@ -12,7 +15,7 @@ import Button from "../../components/button";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function Signup() {
+export default function Login() {
 
   const {width, height} = Dimensions.get('screen')
 
@@ -20,8 +23,39 @@ export default function Signup() {
   const [password , setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [selectedRole, setSelectedRole] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  // const handleLogin = async () => {
+  //   if (!selectedRole) {
+  //     Alert.alert('Error', 'Please select user (Admin or Employee)');
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await api.post('/users/login', { email, password });
+
+  //     if (response.status === 200) {
+  //       // optionally store token
+  //       // await SecureStore.setItemAsync('token', response.data.token);
+
+  //       Alert.alert('Success', 'Login successful');
+  //       if (selectedRole === 'admin') {
+  //         router.replace('/(dashboard)/(admin)');
+  //       } else {
+  //         router.replace('/(dashboard)/(employee)');
+  //       }
+  //     } else {
+  //       Alert.alert('Login Failed', response.data?.message || 'Unexpected error');
+  //     }
+  //   } catch (error) {
+  //     Alert.alert(
+  //       'Error',
+  //       error.response?.data?.message || 'Unable to login. Check credentials or connection.'
+  //     );
+  //   }
+  // };
 
   const styles = StyleSheet.create({
   container:{
@@ -104,7 +138,7 @@ export default function Signup() {
       <View style={{ width: "100%", height: "10%", alignItems: "center",
          }}>
         <Image
-          source={require("../../assets/images/Logo + Name.png")}
+          source={require("../../assets/images/Logo-and-Name.png")}
           style={{
             width: Math.min(360, width * 0.6),
             height: height * 0.04,
@@ -197,6 +231,7 @@ export default function Signup() {
       </View>
 
 
+    {/* <Button buttonStyle={{ marginTop: 42 }} text="Log In" onPress={handleLogin} /> */}
 
 
   <Button buttonStyle={{marginTop:42}} text="Log In" onPress={()=>{

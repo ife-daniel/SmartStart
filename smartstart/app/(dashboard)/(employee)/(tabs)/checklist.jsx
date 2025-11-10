@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View,Text,StyleSheet,ScrollView,Dimensions } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-const { width } = Dimensions.get("screen");
+import { SafeAreaView } from "react-native-safe-area-context";
+import { router} from "expo-router";
 
 export default function EmployeeChecklist() {
   // 🔹 Set deadline date/time
@@ -96,6 +96,7 @@ export default function EmployeeChecklist() {
   const completedTasks = tasks.filter((t) => t.status === "Completed").length;
 
   return (
+    <SafeAreaView style={{ flex: 1, paddingBottom:-34, backgroundColor: "white" }}>
     <ScrollView
       style={styles.container}
       contentContainerStyle={{ paddingBottom: 40 }}
@@ -158,6 +159,7 @@ export default function EmployeeChecklist() {
         </View>
       ))}
     </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -165,8 +167,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal: width * 0.05,
-    paddingTop: 20,
+    paddingHorizontal: 20,
+    paddingVertical:28,
   },
   deadlineCard: {
     flexDirection: "row",

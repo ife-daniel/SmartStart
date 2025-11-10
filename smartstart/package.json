@@ -25,7 +25,8 @@
         "enabled": true,
         "exclude": ["/foo/", "bar"],
         "listUnknownPackages": true
-      }
+      },
+      "gitIgnoreCheck": { "enabled": false }
     }
   },
   "dependencies": {

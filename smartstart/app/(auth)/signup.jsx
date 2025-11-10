@@ -1,7 +1,10 @@
 import { Text, View, TextInput, Image, Dimensions, 
   TouchableOpacity, ScrollView, Alert, StyleSheet } from "react-native";
 
-import { useState, useEffect } from "react";
+import { signupUser } from '../../src/services/auth';
+import api from '../../src/api/client';
+
+import { useState } from "react";
 
 import {SafeAreaView} from "react-native-safe-area-context";
 
@@ -22,8 +25,41 @@ export default function Signup() {
   const [password , setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [selectedRole, setSelectedRole] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+
+  // const handleSignup = async () => {
+  //   if (!selectedRole) {
+  //     Alert.alert('Error', 'Please select user (Admin or Employee)');
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await api.post('/users/register', {
+  //       name,
+  //       email,
+  //       password,
+  //       role: selectedRole,
+  //     });
+
+  //     if (response.status === 201) {
+  //       Alert.alert('Success', 'Account created successfully! You can now log in.');
+  //       if (selectedRole === 'admin') {
+  //         router.replace('/(dashboard)/(admin)');
+  //       } else {
+  //         router.replace('/(dashboard)/(employee)');
+  //       }
+  //     } else {
+  //       Alert.alert('Signup Failed', response.data?.message || 'Unexpected error');
+  //     }
+  //   } catch (error) {
+  //     Alert.alert(
+  //       'Error',
+  //       error.response?.data?.message || 'Unable to sign up. Please try again later.'
+  //     );
+  //   }
+  // };
 
   const styles = StyleSheet.create({
   container:{
@@ -102,7 +138,7 @@ export default function Signup() {
       <View style={{ width:"100%", height:"10%", alignItems:"center"
          }}>
         <Image
-          source={require("../../assets/images/Logo + Name.png")}
+          source={require("../../assets/images/Logo-and-Name.png")}
           style={{
             width: Math.min(360, width * 0.6),
             height: height * 0.04,
@@ -214,6 +250,9 @@ export default function Signup() {
             style={styles.input} onChangeText={(password)=>{setPassword(password)
              }}/>
       </View>
+
+      {/* <Button buttonStyle={{ marginTop: 28 }} text="Sign Up" onPress={handleSignup} /> */}
+
 
 
   <Button buttonStyle={{marginTop:28}} text="Sign Up" onPress={()=>{

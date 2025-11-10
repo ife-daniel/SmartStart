@@ -82,7 +82,7 @@ export default function ForgotPassword() {
               <View style={{ width: "100%", height: "10%", alignItems: "center",
                  }}>
                 <Image
-                  source={require("../../assets/images/Logo + Name.png")}
+                  source={require("../../assets/images/Logo-and-Name.png")}
                   style={{
                     width: Math.min(360, width * 0.6),
                     height: height * 0.04,

@@ -35,7 +35,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/Logo + Name.png",
+          "image": "./assets/images/Logo-and-Name.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
@@ -52,6 +52,7 @@
     },
     "extra": {
       "router": {},
+      "apiBaseUrl": "process.env.EXPO_PUBLIC_API_BASE_URL",
       "eas": {
         "projectId": "927ff52e-9151-414f-af32-8ff1786e8dc0"
       }
